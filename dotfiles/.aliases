@@ -1,0 +1,56 @@
+# FILE: renato-dev-setup/dotfiles/.aliases
+
+# --- Geral ---
+alias ll="ls -la"
+alias la="ls -lAh"
+alias c="clear"
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias home="cd ~"
+alias refresh="source ~/.zshrc" # Recarrega as configurações do shell
+
+# --- Git ---
+alias gs="git status"
+alias ga="git add ."
+alias gc="git commit -m"
+alias gp="git push"
+alias gpull="git pull"
+alias gco="git checkout"
+alias gb="git branch"
+alias gl="git log --oneline --decorate --all --graph"
+
+# --- Docker ---
+alias dps="docker ps"
+alias dpsa="docker ps -a"
+alias dimg="docker images"
+alias dcompup="docker-compose up -d"
+alias dcompdown="docker-compose down"
+alias dcomprb="docker-compose down && docker-compose up -d --build"
+alias dcl="docker container prune -f && docker image prune -a -f && docker volume prune -f && docker network prune -f" # Limpa tudo do Docker
+alias dexec="docker exec -it" # Ex: dexec [container_name] bash
+
+# --- Node.js/NPM/Yarn ---
+alias ni="npm install"
+alias nis="npm install && npm start"
+alias nrd="npm run dev"
+alias nrt="npm run test"
+alias nrb="npm run build"
+alias ys="yarn start"
+alias yd="yarn dev"
+alias yi="yarn install"
+
+# --- Python ---
+alias py="python3"
+alias pip="pip3"
+alias venv="python3 -m venv venv && source venv/bin/activate"
+
+# --- Caminhos comuns no WSL ---
+alias cdisk="cd /mnt/c"
+alias ddisk="cd /mnt/d"
+alias desktop="cd /mnt/c/Users/$USER/Desktop"
+alias downloads="cd /mnt/c/Users/$USER/Downloads"
+alias documents="cd /mnt/c/Users/$USER/Documents"
+
+# --- VS Code ---
+alias code="code ." # Abre o VS Code na pasta atual (requer extensão WSL no VS Code)

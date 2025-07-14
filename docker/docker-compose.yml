@@ -1,0 +1,35 @@
+# FILE: renato-dev-setup/docker/docker-compose.yml
+
+version: '3.8' # Versão da sintaxe do Docker Compose
+
+services:
+  # Serviço para a sua aplicação web (Node.js neste exemplo)
+  web:
+    build:
+      context: . # O Dockerfile está no diretório atual
+      dockerfile: ./docker/Dockerfile # Caminho para o Dockerfile
+    ports:
+      - "3000:3000" # Mapeia a porta 3000 do host para a porta 3000 do container
+    volumes:
+      - .:/app # Mapeia o diretório atual do projeto (host) para /app no container
+               # Isso permite que suas mudanças de código sejam refletidas sem reconstruir a imagem
+    environment:
+      NODE_ENV: development
+      DATABASE_URL: postgres://user:password@db:5432/mydatabase # Variável de ambiente para conexão com o banco
+    depends_on:
+      - db # Garante que o serviço 'db' seja iniciado antes do serviço 'web'
+
+  # Serviço para o banco de dados PostgreSQL
+  db:
+    image: postgres:14-alpine # Imagem oficial do PostgreSQL (versão 14, slim)
+    environment:
+      POSTGRES_DB: mydatabase # Nome do banco de dados
+      POSTGRES_USER: user     # Usuário do banco de dados
+      POSTGRES_PASSWORD: password # Senha do banco de dados (use algo mais seguro em produção)
+    volumes:
+      - db_data:/var/lib/postgresql/data # Volume persistente para os dados do banco
+    ports:
+      - "5432:5432" # Mapeia a porta 5432 do host para a porta 5432 do container (opcional, para acessar o DB do host)
+
+volumes:
+  db_data: # Define o volume persistente para o banco de dados

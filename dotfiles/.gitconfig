@@ -1,0 +1,34 @@
+# FILE: renato-dev-setup/dotfiles/.gitconfig
+
+[user]
+    name = Renato Developer # Altere para seu nome
+    email = seu.email@example.com # Altere para seu email
+
+[core]
+    editor = code --wait # Abre commits no VS Code e espera fechar
+
+[alias]
+    st = status
+    co = checkout
+    br = branch
+    ci = commit
+    amend = commit --amend --no-edit
+    ps = push
+    pl = pull
+    hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+    type = cat-file -t
+    dump = cat-file -p
+
+[init]
+    defaultBranch = main # Define 'main' como branch padrão para novos repositórios
+
+[color]
+    ui = auto # Habilita cores na interface do Git
+
+[credential]
+    # Recomenda-se usar o gerenciador de credenciais do Git para Windows ou WSL
+    # wincred para Windows, ou libsecret/store para WSL
+    helper = store # OU "manager-core" se usar o Git Credential Manager for Windows no WSL2
+    # Para WSL2, considere:
+    # helper = "/mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager-core.exe"
+    # Certifique-se de que o caminho do GCM no Windows está correto e o Docker Desktop está integrado ao WSL.
